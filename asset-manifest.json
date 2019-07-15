@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/GenderPredictor/static/css/main.232305eb.chunk.css",
-    "main.js": "/GenderPredictor/static/js/main.b8c84bcd.chunk.js",
-    "main.js.map": "/GenderPredictor/static/js/main.b8c84bcd.chunk.js.map",
+    "main.js": "/GenderPredictor/static/js/main.d0c4b7bc.chunk.js",
+    "main.js.map": "/GenderPredictor/static/js/main.d0c4b7bc.chunk.js.map",
     "runtime~main.js": "/GenderPredictor/static/js/runtime~main.4175b898.js",
     "runtime~main.js.map": "/GenderPredictor/static/js/runtime~main.4175b898.js.map",
     "static/css/2.22a7d4ef.chunk.css": "/GenderPredictor/static/css/2.22a7d4ef.chunk.css",
     "static/js/2.073f37f5.chunk.js": "/GenderPredictor/static/js/2.073f37f5.chunk.js",
     "static/js/2.073f37f5.chunk.js.map": "/GenderPredictor/static/js/2.073f37f5.chunk.js.map",
     "index.html": "/GenderPredictor/index.html",
-    "precache-manifest.a001e2f6418c8d9a3750bf5c1b8dc66e.js": "/GenderPredictor/precache-manifest.a001e2f6418c8d9a3750bf5c1b8dc66e.js",
+    "precache-manifest.24494af2f47c71ced568592312b7b2a0.js": "/GenderPredictor/precache-manifest.24494af2f47c71ced568592312b7b2a0.js",
     "service-worker.js": "/GenderPredictor/service-worker.js",
     "static/css/2.22a7d4ef.chunk.css.map": "/GenderPredictor/static/css/2.22a7d4ef.chunk.css.map",
     "static/css/main.232305eb.chunk.css.map": "/GenderPredictor/static/css/main.232305eb.chunk.css.map"
