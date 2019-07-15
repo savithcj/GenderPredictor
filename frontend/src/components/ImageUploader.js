@@ -38,8 +38,8 @@ class ImageUploader extends React.Component {
     this.setState({ isUploading: true });
     Resizer.imageFileResizer(
       e.target.files[0],
-      800,
-      800,
+      500,
+      500,
       "JPEG",
       100,
       270,
