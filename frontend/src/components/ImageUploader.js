@@ -36,13 +36,14 @@ class ImageUploader extends React.Component {
   }
   onChange(e) {
     this.setState({ isUploading: true });
+
     Resizer.imageFileResizer(
       e.target.files[0],
-      500,
-      500,
+      800,
+      800,
       "JPEG",
       100,
-      270,
+      0,
       uri => {
         const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
         this.setState({ file: strImage });
