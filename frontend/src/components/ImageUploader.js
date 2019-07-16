@@ -10,8 +10,7 @@ class ImageUploader extends React.Component {
     this.state = {
       file: null,
       isLoading: false,
-      result: null,
-      isUploading: false
+      result: null
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -46,8 +45,8 @@ class ImageUploader extends React.Component {
       0,
       uri => {
         const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
-        this.setState({ file: strImage });
-        console.log("[Before sending to api]", strImage);
+        //if there was an error converting the image to string, set the file in the state to null
+        strImage !== "File Not Found" ? this.setState({ file: strImage }) : this.setState({ file: null });
       },
       "base64"
     );
@@ -71,7 +70,8 @@ class ImageUploader extends React.Component {
       <div className="container-fluid my-5">
         <form onSubmit={this.onFormSubmit}>
           <input type="file" name="myImage" onChange={this.onChange} />
-          <button type="submit" disabled={this.state.isUploading}>
+          {/* button is disabled if no files are selected */}
+          <button type="submit" disabled={!this.state.file}>
             Upload
           </button>
         </form>
