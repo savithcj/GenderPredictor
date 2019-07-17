@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "888ff41d76ef346a56a9de29ea677179",
+    "revision": "aebcc1df1695edc23beed72c9e069f58",
     "url": "/GenderPredictor/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GenderPredictor/static/css/2.22a7d4ef.chunk.css"
   },
   {
-    "revision": "faa8888c380e97dfced1",
+    "revision": "d5af221964f456a96b31",
     "url": "/GenderPredictor/static/css/main.232305eb.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GenderPredictor/static/js/2.073f37f5.chunk.js"
   },
   {
-    "revision": "faa8888c380e97dfced1",
-    "url": "/GenderPredictor/static/js/main.2c6ea9a2.chunk.js"
+    "revision": "d5af221964f456a96b31",
+    "url": "/GenderPredictor/static/js/main.1aa2e277.chunk.js"
   },
   {
     "revision": "2ebda00b47c9d7710390",
