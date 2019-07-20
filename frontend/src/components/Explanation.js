@@ -16,7 +16,7 @@ export default function Explanation() {
         classification using the CNN.
       </p>
       <p>
-        In the case that the Haar Cascade Classifier fails to detect any faces, the uploaded image will be returned
+        In the event that the Haar Cascade Classifier fails to detect any faces, the uploaded image will be returned
         unchanged.
       </p>
     </div>
