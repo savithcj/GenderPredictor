@@ -71,11 +71,25 @@ class ImageUploader extends React.Component {
     return (
       <div className="container-fluid my-5 text-center">
         <form onSubmit={this.onFormSubmit}>
-          <input type="file" name="myImage" onChange={this.onChange} />
-          {/* button is disabled if no files are selected */}
-          <button type="submit" disabled={!this.state.file}>
-            Upload
-          </button>
+          <div className="input-group">
+            <div className="custom-file">
+              <input
+                type="file"
+                className="custom-file-input"
+                id="inputGroupFile04"
+                name="myImage"
+                onChange={this.onChange}
+              />
+              <label className="custom-file-label text-left" htmlFor="inputGroupFile04">
+                Choose file to upload
+              </label>
+            </div>
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary" type="submit" disabled={!this.state.file}>
+                Upload
+              </button>
+            </div>
+          </div>
         </form>
         <div className="container-fluid my-5">{showSpinnerOrResults}</div>
       </div>

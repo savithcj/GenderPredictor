@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <NavBar />
       <Info />
-      <ImageUploader />
       <Explanation />
+      <ImageUploader />
     </div>
   );
 }
