@@ -4,7 +4,7 @@ export default function Explanation() {
   return (
     <div className="container-fluid my-4">
       <p>
-        When an image is uploaded, the site makes a call to a RESTful API. The API uses the{" "}
+        When the evaluate button is pressed, the site makes a call to a RESTful API. The API uses the{" "}
         <a
           href="https://docs.opencv.org/3.4.1/d7/d8b/tutorial_py_face_detection.html"
           target="_blank"
