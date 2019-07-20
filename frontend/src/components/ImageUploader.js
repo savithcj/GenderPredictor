@@ -31,17 +31,19 @@ class ImageUploader extends React.Component {
         this.setState({ result: response.data });
         this.setState({ isLoading: false });
       })
-      .catch(error => {});
+      .catch(error => {
+        console.log("API call failed.");
+      });
   }
   onChange(e) {
     this.setState({ isUploading: true });
 
     Resizer.imageFileResizer(
       e.target.files[0],
-      800,
-      800,
+      1000,
+      1000,
       "JPEG",
-      100,
+      60,
       0,
       uri => {
         const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
@@ -61,13 +63,13 @@ class ImageUploader extends React.Component {
     );
 
     const result = this.state.result ? (
-      <img src={"data:image/jpg;base64," + this.state.result} alt="failed to load" />
+      <img src={"data:image/jpg;base64," + this.state.result} alt="failed to load" className="img-fluid" />
     ) : null;
 
     const showSpinnerOrResults = this.state.isLoading ? spinner : result;
 
     return (
-      <div className="container-fluid my-5">
+      <div className="container-fluid my-5 text-center">
         <form onSubmit={this.onFormSubmit}>
           <input type="file" name="myImage" onChange={this.onChange} />
           {/* button is disabled if no files are selected */}
