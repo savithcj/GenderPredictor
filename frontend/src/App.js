@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Info from "./components/Info";
 import ImageUploader from "./components/ImageUploader";
+import Explanation from "./components/Explanation";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
       <Info />
       <ImageUploader />
+      <Explanation />
     </div>
   );
 }
