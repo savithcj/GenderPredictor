@@ -19,7 +19,7 @@ class ImageUploader extends React.Component {
     e.preventDefault();
     const formData = new FormData();
     formData.append("myImage", this.state.file);
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, file: null });
     const config = {
       headers: {
         "content-type": "image/jpeg"
@@ -62,10 +62,21 @@ class ImageUploader extends React.Component {
       </div>
     );
 
-    const result = this.state.result ? (
-      <img src={"data:image/jpg;base64," + this.state.result} alt="failed to load" className="img-fluid" />
+    const selectedImage = this.state.file ? (
+      <React.Fragment>
+        <h5 className="text-center">Selected Image</h5>
+        <img src={"data:image/jpg;base64," + this.state.file} alt="failed to load" className="img-fluid" />
+      </React.Fragment>
     ) : null;
 
+    const result = this.state.result ? (
+      <React.Fragment>
+        <h5 className="text-center">Result</h5>
+        <img src={"data:image/jpg;base64," + this.state.result} alt="failed to load" className="img-fluid" />
+      </React.Fragment>
+    ) : null;
+
+    const showSpinnerOrSelection = this.state.isUploading ? spinner : selectedImage;
     const showSpinnerOrResults = this.state.isLoading ? spinner : result;
 
     return (
@@ -81,17 +92,20 @@ class ImageUploader extends React.Component {
                 onChange={this.onChange}
               />
               <label className="custom-file-label text-left" htmlFor="inputGroupFile04">
-                {this.state.file ? "File selected" : "Select file to upload"}
+                {this.state.file ? "File selected" : "Select image to upload"}
               </label>
             </div>
             <div className="input-group-append">
               <button className="btn btn-outline-secondary" type="submit" disabled={!this.state.file}>
-                Upload
+                Evaluate
               </button>
             </div>
           </div>
         </form>
-        <div className="container-fluid my-5">{showSpinnerOrResults}</div>
+        <div className="container-fluid my-5">
+          {showSpinnerOrSelection}
+          {showSpinnerOrResults}
+        </div>
       </div>
     );
   }
