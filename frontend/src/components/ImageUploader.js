@@ -36,7 +36,7 @@ class ImageUploader extends React.Component {
       });
   }
   onChange(e) {
-    this.setState({ isUploading: true });
+    this.setState({ isUploading: true, result: null });
 
     Resizer.imageFileResizer(
       e.target.files[0],
