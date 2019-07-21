@@ -94,7 +94,7 @@ class ImageUploader extends React.Component {
                 disabled={this.state.isLoading || this.state.isUploading}
               />
               <label className="custom-file-label text-left" htmlFor="inputGroupFile04">
-                {this.state.file ? "Image selected" : "Select image"}
+                {this.state.file ? "Click evaluate" : "Select image"}
               </label>
             </div>
             <div className="input-group-append">
