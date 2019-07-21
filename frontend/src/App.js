@@ -7,12 +7,14 @@ import Explanation from "./components/Explanation";
 
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
       <NavBar />
-      <Info />
-      <Explanation />
-      <ImageUploader />
-    </div>
+      <div className="container">
+        <Info />
+        <Explanation />
+        <ImageUploader />
+      </div>
+    </React.Fragment>
   );
 }
 
