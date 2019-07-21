@@ -12,8 +12,8 @@ export default function Explanation() {
         >
           OpenCV Haar Feature-based Cascade Classifier
         </a>{" "}
-        to detect if a face is present in the uploaded image. Any detected faces are then evaluated for gender
-        classification using the CNN.
+        to detect if a face is present in the uploaded image. Any detected faces are then classified for gender using
+        the CNN.
       </p>
       <p>
         In the event that the Haar Cascade Classifier fails to detect any faces, the uploaded image will be returned

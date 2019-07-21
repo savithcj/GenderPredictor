@@ -1,5 +1,5 @@
 import React from "react";
-import Resizer from "react-image-file-resizer";
+import Resizer from "../util/resizer";
 import axios from "axios";
 
 const APIUrl = "https://baroque-saucisson-79648.herokuapp.com/prediction";
