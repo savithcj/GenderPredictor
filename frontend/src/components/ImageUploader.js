@@ -10,6 +10,7 @@ class ImageUploader extends React.Component {
     this.state = {
       file: null,
       isLoading: false,
+      isUploading: false,
       result: null
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -90,6 +91,7 @@ class ImageUploader extends React.Component {
                 id="inputGroupFile04"
                 name="myImage"
                 onChange={this.onChange}
+                disabled={this.state.isLoading || this.state.isUploading}
               />
               <label className="custom-file-label text-left" htmlFor="inputGroupFile04">
                 {this.state.file ? "Image selected" : "Select image"}

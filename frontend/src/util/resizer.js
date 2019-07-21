@@ -8,7 +8,32 @@
  * Savith Jayasekera
  *
  */
-import loadImage from "./load-image";
+import loadImage from "blueimp-load-image";
+
+function fixImage(file, image) {
+  loadImage.parseMetaData(file, function(data) {
+    //default image orientation
+    var orientation = 0;
+    //if exif data available, update orientation
+    if (data.exif) {
+      orientation = data.exif.get("Orientation");
+    }
+    loadImage(
+      file,
+      function(canvas) {
+        //here's the base64 data result
+        var base64data = canvas.toDataURL("image/jpeg");
+        image.src = base64data;
+        return base64data;
+      },
+      {
+        //should be set to canvas : true to activate auto fix orientation
+        canvas: true,
+        orientation: orientation
+      }
+    );
+  });
+}
 
 class Resizer {
   static changeHeightWidth(height, maxHeight, width, maxWidth) {
@@ -99,11 +124,10 @@ class Resizer {
     var blob = null;
     const reader = new FileReader();
     if (file) {
-      console.log(file);
       reader.readAsDataURL(file);
       reader.onload = () => {
         var image = new Image();
-        image.src = reader.result;
+        fixImage(file, image);
         image.onload = function() {
           var resizedDataUrl = Resizer.resizeAndRotateImage(
             image,
