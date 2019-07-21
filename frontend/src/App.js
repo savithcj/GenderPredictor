@@ -11,8 +11,8 @@ function App() {
       <NavBar />
       <div className="container">
         <Info />
-        <Explanation />
         <ImageUploader />
+        <Explanation />
       </div>
     </React.Fragment>
   );

@@ -10,12 +10,13 @@ class ImageUploader extends React.Component {
     this.state = {
       file: null,
       isLoading: false,
-      isUploading: false,
       result: null
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
+  //called when the evaluate button is clicked
   onFormSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -33,11 +34,13 @@ class ImageUploader extends React.Component {
         this.setState({ isLoading: false });
       })
       .catch(error => {
-        console.log("API call failed.");
+        console.log("API call failed.", error);
       });
   }
+
+  //called when selecting an image
   onChange(e) {
-    this.setState({ isUploading: true, result: null });
+    this.setState({ result: null, file: null });
 
     Resizer.imageFileResizer(
       e.target.files[0],
@@ -53,7 +56,6 @@ class ImageUploader extends React.Component {
       },
       "base64"
     );
-    this.setState({ isUploading: false });
   }
 
   render() {
@@ -77,7 +79,6 @@ class ImageUploader extends React.Component {
       </React.Fragment>
     ) : null;
 
-    const showSpinnerOrSelection = this.state.isUploading ? spinner : selectedImage;
     const showSpinnerOrResults = this.state.isLoading ? spinner : result;
 
     return (
@@ -91,7 +92,7 @@ class ImageUploader extends React.Component {
                 id="inputGroupFile04"
                 name="myImage"
                 onChange={this.onChange}
-                disabled={this.state.isLoading || this.state.isUploading}
+                disabled={this.state.isLoading}
               />
               <label className="custom-file-label text-left" htmlFor="inputGroupFile04">
                 {this.state.file ? "Click evaluate" : "Select image"}
@@ -105,7 +106,7 @@ class ImageUploader extends React.Component {
           </div>
         </form>
         <div className="container-fluid my-5">
-          {showSpinnerOrSelection}
+          {selectedImage}
           {showSpinnerOrResults}
         </div>
       </div>
