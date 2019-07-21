@@ -92,7 +92,7 @@ class ImageUploader extends React.Component {
                 onChange={this.onChange}
               />
               <label className="custom-file-label text-left" htmlFor="inputGroupFile04">
-                {this.state.file ? "Selected. Click Evaluate" : "Select image to upload"}
+                {this.state.file ? "Image selected" : "Select image"}
               </label>
             </div>
             <div className="input-group-append">
