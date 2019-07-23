@@ -2,8 +2,7 @@ import React from "react";
 import Resizer from "../util/resizer";
 import axios from "axios";
 
-// const APIUrl = "https://baroque-saucisson-79648.herokuapp.com/prediction";
-const APIUrl = "lol";
+const APIUrl = "https://baroque-saucisson-79648.herokuapp.com/prediction";
 
 class ImageUploader extends React.Component {
   constructor(props) {
@@ -68,10 +67,12 @@ class ImageUploader extends React.Component {
             errorMessage: "Error reading file. Please make sure the file is an image."
           });
           return;
+        } else if (uri === "File Not Found") {
+          this.setState({ file: null });
+          return;
         }
         const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
-        //if there was an error converting the image to string, set the file in the state to null
-        strImage !== "File Not Found" ? this.setState({ file: strImage }) : this.setState({ file: null });
+        this.setState({ file: strImage });
       },
       "base64"
     );
