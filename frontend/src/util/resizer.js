@@ -10,7 +10,7 @@
  */
 import loadImage from "blueimp-load-image";
 
-function fixImage(file, image) {
+function fixImage(file, image, responseUriFunc) {
   loadImage.parseMetaData(file, function(data) {
     //default image orientation
     var orientation = 0;
@@ -22,9 +22,12 @@ function fixImage(file, image) {
       file,
       function(canvas) {
         //here's the base64 data result
-        var base64data = canvas.toDataURL("image/jpeg");
-        image.src = base64data;
-        return base64data;
+        try {
+          var base64data = canvas.toDataURL("image/jpeg");
+          image.src = base64data;
+        } catch (TypeError) {
+          responseUriFunc("error");
+        }
       },
       {
         //should be set to canvas : true to activate auto fix orientation
@@ -127,7 +130,7 @@ class Resizer {
       reader.readAsDataURL(file);
       reader.onload = () => {
         var image = new Image();
-        fixImage(file, image);
+        fixImage(file, image, responseUriFunc);
         image.onload = function() {
           var resizedDataUrl = Resizer.resizeAndRotateImage(
             image,
@@ -142,7 +145,7 @@ class Resizer {
         };
       };
       reader.onerror = error => {
-        responseUriFunc(error);
+        responseUriFunc("error");
       };
     } else {
       responseUriFunc("File Not Found");
