@@ -66,16 +66,16 @@ class ImageUploader extends React.Component {
             errorOccurred: true,
             errorMessage: "Error reading file. Please make sure the file is an image."
           });
-          return;
         } else if (uri === "File Not Found") {
           this.setState({ file: null });
-          return;
+        } else {
+          const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
+          this.setState({ file: strImage });
         }
-        const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
-        this.setState({ file: strImage });
       },
       "base64"
     );
+    e.target.value = null;
   }
 
   render() {
@@ -109,6 +109,7 @@ class ImageUploader extends React.Component {
           <div className="input-group">
             <div className="custom-file">
               <input
+                title={this.state.file ? "Change file" : "Select file"}
                 type="file"
                 className="custom-file-input"
                 id="inputGroupFile04"
