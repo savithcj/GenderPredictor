@@ -28,7 +28,7 @@ class ImageUploader extends React.Component {
     axios({
       method: "post",
       url: APIUrl,
-      timeout: 1000 * 15,
+      timeout: 1000 * 30,
       headers: {
         "Content-Type": "image/jpeg"
       },
