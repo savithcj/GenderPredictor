@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://savithcj.github.io/GenderPredictor",
+  "homepage": "https://savithcj.github.io/gender-predictor",
   "dependencies": {
     "axios": "^0.19.0",
     "blueimp-load-image": "^2.23.0",
