@@ -10,7 +10,9 @@ class ImageUploader extends React.Component {
     this.state = {
       file: null,
       isLoading: false,
-      result: null
+      result: null,
+      errorOccurred: false,
+      errorMessage: null
     };
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -22,25 +24,33 @@ class ImageUploader extends React.Component {
     const formData = new FormData();
     formData.append("myImage", this.state.file);
     this.setState({ isLoading: true, file: null });
-    const config = {
+
+    axios({
+      method: "post",
+      url: APIUrl,
+      timeout: 1000 * 30,
       headers: {
-        "content-type": "image/jpeg"
-      }
-    };
-    axios
-      .post(APIUrl, this.state.file, config)
+        "Content-Type": "image/jpeg"
+      },
+      data: this.state.file
+    })
       .then(response => {
         this.setState({ result: response.data });
         this.setState({ isLoading: false });
       })
       .catch(error => {
-        console.log("API call failed.", error);
+        if (error.code === "ECONNABORTED") {
+          this.setState({ errorOccurred: true, errorMessage: "API timed out. Please try again.", isLoading: false });
+        } else {
+          console.log("API call failed.", error);
+          this.setState({ errorOccurred: true, errorMessage: "API call failed. Please try again.", isLoading: false });
+        }
       });
   }
 
   //called when selecting an image
   onChange(e) {
-    this.setState({ result: null, file: null });
+    this.setState({ result: null, file: null, errorOccurred: false, errorMessage: null });
 
     Resizer.imageFileResizer(
       e.target.files[0],
@@ -50,12 +60,22 @@ class ImageUploader extends React.Component {
       60,
       0,
       uri => {
-        const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
-        //if there was an error converting the image to string, set the file in the state to null
-        strImage !== "File Not Found" ? this.setState({ file: strImage }) : this.setState({ file: null });
+        if (uri === "error") {
+          this.setState({
+            file: null,
+            errorOccurred: true,
+            errorMessage: "Error reading file. Please make sure the file is an image."
+          });
+        } else if (uri === "File Not Found") {
+          this.setState({ file: null });
+        } else {
+          const strImage = uri.replace(/^data:image\/[a-z]+;base64,/, "");
+          this.setState({ file: strImage });
+        }
       },
       "base64"
     );
+    e.target.value = null;
   }
 
   render() {
@@ -79,6 +99,8 @@ class ImageUploader extends React.Component {
       </React.Fragment>
     ) : null;
 
+    const errorMessage = <h6>{this.state.errorMessage}</h6>;
+
     const showSpinnerOrResults = this.state.isLoading ? spinner : result;
 
     return (
@@ -87,6 +109,7 @@ class ImageUploader extends React.Component {
           <div className="input-group">
             <div className="custom-file">
               <input
+                title={this.state.file ? "Change file" : "Select file"}
                 type="file"
                 className="custom-file-input"
                 id="inputGroupFile04"
@@ -106,6 +129,7 @@ class ImageUploader extends React.Component {
           </div>
         </form>
         <div className="container-fluid my-5">
+          {this.state.errorOccurred && this.state.errorMessage ? errorMessage : null}
           {selectedImage}
           {showSpinnerOrResults}
         </div>
